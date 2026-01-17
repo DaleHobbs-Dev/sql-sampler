@@ -54,3 +54,9 @@ SELECT title, domestic_sales, international_sales FROM movies INNER JOIN boxoffi
 
 -- Query to list all movies along with their ratings, ordered from highest to lowest rating
 SELECT title, rating FROM movies INNER JOIN boxoffice ON movies.id = boxoffice.movie_id ORDER BY rating DESC;
+
+-- Find the number of movies directed by each director
+SELECT director, COUNT() AS number_directed FROM movies GROUP BY director;
+
+-- Find the total sales for each director
+SELECT director, SUM(domestic_sales+international_sales) AS total_sales FROM movies LEFT JOIN boxoffice ON movies.id = boxoffice.movie_id GROUP BY director;
