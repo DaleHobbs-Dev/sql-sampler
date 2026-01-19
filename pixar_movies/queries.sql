@@ -1,6 +1,16 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS boxoffice;
 
+-- syntax for creating a table
+--CREATE TABLE IF NOT EXISTS mytable (
+    --column DataType TableConstraint DEFAULT default_value,
+    --another_column DataType TableConstraint DEFAULT default_value,
+    --…);
+
+-- DataType values: INTEGER, REAL, TEXT, BLOB, FLOAT, DOUBLE, DATE, BOOLEAN
+
+-- TableConstraint values: PRIMARY KEY, UNIQUE, NOT NULL, CHECK, FOREIGN KEY, AUTO_INCREMENT
+
 CREATE TABLE movies (
     id INTEGER PRIMARY KEY,
     title TEXT,
@@ -26,7 +36,7 @@ INSERT INTO movies VALUES (7, 'Cars', 'John Lasseter', 2006, 117);
 INSERT INTO movies VALUES (8, 'Ratatouille', 'Brad Bird', 2007, 115);
 INSERT INTO movies VALUES (9, 'WALL-E', 'Andrew Stanton', 2008, 104);
 INSERT INTO movies VALUES (10, 'Up', 'Pete Docter', 2009, 101);
-INSERT INTO movies VALUES (11, 'Toy Story 3', 'Lee Unkrich', 2010, 103);
+INSERT INTO movies VALUES (11, 'Toy Story 8', 'El Directore', 2010, 103);
 INSERT INTO movies VALUES (12, 'Cars 2', 'John Lasseter', 2011, 120);
 INSERT INTO movies VALUES (13, 'Brave', 'Brenda Chapman', 2012, 102);
 INSERT INTO movies VALUES (14, 'Monsters University', 'Dan Scanlon', 2013, 110);
@@ -60,3 +70,6 @@ SELECT director, COUNT() AS number_directed FROM movies GROUP BY director;
 
 -- Find the total sales for each director
 SELECT director, SUM(domestic_sales+international_sales) AS total_sales FROM movies LEFT JOIN boxoffice ON movies.id = boxoffice.movie_id GROUP BY director;
+
+-- Update the title and director of the movie with id 11
+UPDATE movies SET title = "Toy Story 3", director = "Lee Unkrich" WHERE id=11;
